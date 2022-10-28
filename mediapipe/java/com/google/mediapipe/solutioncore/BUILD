@@ -135,3 +135,10 @@ mediapipe_aar(
     srcs = glob(["**/*.java"]),
     gen_libmediapipe = False,
 )
+
+# Expose the java source files for building mediapipe AAR.
+filegroup(
+    name = "java_src",
+    srcs = glob(["**/*.java"]),
+    visibility = ["//mediapipe:__subpackages__"],
+)
