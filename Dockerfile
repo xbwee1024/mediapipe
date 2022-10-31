@@ -21,6 +21,10 @@ WORKDIR /mediapipe
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 更新镜像
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.tuna.tsinghua.edu.cn/@g /etc/apt/sources.list
+RUN sed -i s@/security.ubuntu.com/@/mirrors.tuna.tsinghua.edu.cn/@g /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         gcc-8 g++-8 \
@@ -53,8 +57,8 @@ RUN pip3 install wheel
 RUN pip3 install future
 RUN pip3 install absl-py numpy opencv-contrib-python protobuf==3.20.1
 RUN pip3 install six==1.14.0
-RUN pip3 install tensorflow
-RUN pip3 install tf_slim
+RUN pip3 install tensorflow -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 install tf_slim -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
