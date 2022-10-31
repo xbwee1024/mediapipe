@@ -5,7 +5,7 @@ load("//mediapipe/java/com/google/mediapipe:mediapipe_aar.bzl", "mediapipe_aar")
 # 
 # calculators should be built into libmediapipe_jni.so
 mediapipe_aar(
-    name = "mediapipe_solutioncore",
+    name = "mediapipe_framework",
     # srcs = ["//mediapipe/java/com/google/mediapipe/solutioncore:java_src"],   # uncomment this to build original solutions
     srcs = ["//mediapipe/java/com/google/mediapipe/framework/image:java_src"],  # uncomment this to build customized solutions
     calculators = [
@@ -14,6 +14,18 @@ mediapipe_aar(
         "//mediapipe/graphs/hand_tracking:mobile_calculators",
         "//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu_deps",
     ],
+    assets = [
+        "//mediapipe/graphs/holistic_tracking:holistic_tracking_gpu.binarypb",
+        "//mediapipe/modules/face_detection:face_detection_short_range.tflite",
+        "//mediapipe/modules/face_landmark:face_landmark.tflite",
+        "//mediapipe/modules/hand_landmark:hand_landmark_full.tflite",
+        "//mediapipe/modules/hand_landmark:hand_landmark_lite.tflite",
+        "//mediapipe/modules/hand_landmark:handedness.txt",
+        "//mediapipe/modules/holistic_landmark:hand_recrop.tflite",
+        "//mediapipe/modules/pose_detection:pose_detection.tflite",
+        "//mediapipe/modules/pose_landmark:pose_landmark_full.tflite",
+    ],
+    assets_dir = "",
 )
 
 # MUST ADD `.aar` suffix to generate AAR, or just `*.jar` generated
